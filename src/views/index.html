@@ -35,27 +35,25 @@
                         <li id="demo" class="nav-item hover">
                             <a class="nav-item-link" href="../views/index.html">项目</a>
                             <ul class="nav-sub-list fadeUp">
-                                <li class="nav-sub-item"><a href="/g2/doc/index.html">示例</a></li>
-                                <li class="nav-sub-item"><a href="/g2/api/index.html">API</a></li>
-                                <li class="nav-sub-item"><a href="/g2/demo/index.html">图灵</a></li>
+                                <li class="nav-sub-item"><a href="../views/index.html">示例</a></li>
+                                <li class="nav-sub-item"><a href="../views/index.html">API</a></li>
+                                <li class="nav-sub-item"><a href="../views/index.html">图灵</a></li>
                             </ul>
                         </li>
                         <li id="note" class="nav-item">
                             <a class="nav-item-link" href="../views/note/index.html">笔记</a>
                             <ul class="nav-sub-list fadeUp">
-                                <li class="nav-sub-item"><a href="/g2-mobile/doc/index.html">快速上手</a></li>
-                                <li class="nav-sub-item"><a href="/g2-mobile/doc/tutorial/shape.html">使用教程</a></li>
-                                <li class="nav-sub-item"><a href="/g2-mobile/demo/index.html">图表示例</a></li>
-                                <li class="nav-sub-item"><a href="/g2-mobile/api/index.html">API</a></li>
-                                <li class="nav-sub-item"><a href="/g2-mobile/doc/history.html">更新日志</a></li>
+                                <li class="nav-sub-item"><a href="../views/note/index.html">javascript</a></li>
+                                <li class="nav-sub-item"><a href="../views/note/index.html">web</a></li>
+                                <li class="nav-sub-item"><a href="../views/note/index.html">java</a></li>
                             </ul>
                         </li>
                         <li id="userCenter" class="nav-item last">
                             <a class="nav-item-link" href="../views/userCenter/index.html">个人中心</a>
                             <ul class="nav-sub-list fadeUp">
-                                <li class="nav-sub-item"><a href="/vis/doc/chart/classify/compare.html">图表用法</a></li>
-                                <li class="nav-sub-item"><a href="/vis/doc/design/index.html">图表设计指引</a></li>
-                                <li class="nav-sub-item"><a href="/vis/doc/reference.html">经典文献</a></li>
+                                <li class="nav-sub-item"><a href="../views/userCenter/index.html">介绍</a></li>
+                                <li class="nav-sub-item"><a href="../views/userCenter/index.html">网站备案</a></li>
+                                <li class="nav-sub-item"><a href="../views/userCenter/index.html">模板下载</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -67,48 +65,150 @@
         <div class="left-nav">
             <p class="title">项目</p>
             <ul class="left-nav-list">
-                <li class="active">
-                    <a href="../views/index.html">示例</a>
+                <li class="note-menu active">
+                    <a class="menu-title " href="#">示例</a>
                 </li>
                 <!---->
-                <li class="">
+                <li class="note-menu ">
                     <div>
-                        <div class="menu-dir active">API</div>
+                        <div class="menu-title ">API</div>
                             <ul class="sub-list" style="display: none;">
-                            <li class="">
-                                <a href="../../g2/api/index.html">G2</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/chart.html">Chart</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/view.html">View</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/geom.html">Geom</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/scale.html">Scale</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/stat.html">Stat</a>
-                            </li>
+                                <li class="">
+                                    <a href="#">G2</a>
+                                </li>
+                                <li class="">
+                                    <a href="#">Chart</a>
+                                </li>
                             </ul>
                     </div>
                 </li>
                 <!---->
-                <li class="">
-                    <a href="/g2/doc/history.html">图灵</a>
+                <li class="note-menu">
+                    <a class="menu-title " href="#">图灵</a>
                 </li>
             </ul>
         </div>
-        <div class="right-content"></div>
+        <div class="right-content">
+            <div class="page-0 shown">0</div>
+            <div class="page-1">1</div>
+            <div class="page-2">
+                <div class="robot">
+                    <h1 class="text-center">天下事</h1>
+                    <div class="content-list">
+                        <div class="one-message">
+                            <div class="msgfrom-info">天下通</div>
+                            <img class="user-head-icon left" src="https://zos.alipayobjects.com/rmsportal/aGpKpuxoGfZqJobMPLvj.svg">
+                            <div class="msgbody">
+                                <pre>hello</pre>
+                                <img class="triangle" src="../views/images/triangle2.png">
+                            </div>
+                        </div>
+                        <div class="one-message self-msg">
+                            <img class="user-head-icon right" src="https://sview.wanpinghui.com:443/m/ChatRoomTpl/images/jvhua.jpg">
+                            <div class="msgbody">
+                                <pre>hello</pre>
+                                <img class="triangle" src="../views/images/triangle.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edit text-left">
+                        <input class="edit-input" placeholder="知天下事"/>
+                        <button class="send">send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
 <script>
-    $(".menu-dir").on('click',function(){
-        $(".sub-list").slideToggle();
+    var contentList = $(".content-list");
+    $(".note-menu").each(function(i,o){
+        var that=$(this);
+        that.find('.menu-title').click(function(){
+            $(".note-menu").removeClass('active');
+            $("[class^='page-']").removeClass('shown');
+            that.addClass('active');
+            $(".page-"+i).addClass('shown');
+        });
     });
+    $(".send").on("click",function(){
+        var msg = $(".edit-input").val();
+        var url = '';
+        if(msg){
+            contentList.append(pushMsg(msg,true));
+            url='http://op.juhe.cn/robot/index?info='+msg+'&key=fbc26d3cf3ddef874603116ff55429ce';
+            $(".edit-input").val('');
+            // $.ajax({
+            //     url: url,
+            //     type: 'POST',
+            //     // jsonp: 'jsoncallback',
+            //     dataType: 'jsonp',
+            //     jsonpCallback: 'jsoncallback',  
+            //     success: function(json){  
+            //     }  
+            // });
+            $.ajax({
+             type: "GET",
+            //  async: false,
+             url: url,
+             dataType: "jsonp",
+             jsonp: "jsoncallback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+             jsonpCallback:"jsoncallback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+         });
+         $.ajax({
+            url: url,
+            type: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                contentList.append(pushMsg(data.result.text,false));
+                return
+            },
+            error: function () {
+                alert('fff');
+            }
+        })
+        }
+    });
+    function jsoncallback(data){
+        console.log(data);
+        contentList.append(pushMsg(data.result.text,false));
+    }
+    /*拼接消息*/
+    function pushMsg(msg,isSelfSend) {
+        var that = this;
+        var triangle, userhead;
+        var onemsg = '';
+
+        //如果自己发的消息
+        if (isSelfSend) {
+            userhead = '<img class="user-head-icon right" src="https://sview.wanpinghui.com:443/m/ChatRoomTpl/images/jvhua.jpg"/>';
+            //小三角
+            triangle = '<img class="triangle" src="../views/images/triangle.png">';
+
+            onemsg = '<div class="one-message self-msg">' + userhead +
+                '<div class="msgbody"><pre>' + msg + '</pre>' + triangle +
+                '</div></div>';
+
+        }
+        //不是自己发的消息
+        else {
+            userhead = '<img class="user-head-icon left" src="https://zos.alipayobjects.com/rmsportal/aGpKpuxoGfZqJobMPLvj.svg"/>';
+            msghead = '<div class="msgfrom-info">天下通</span></div>';
+                //小三角
+            triangle = '<img class="triangle" src="../views/images/triangle2.png">';
+            onemsg = '<div class="one-message">' + msghead + userhead +
+                '<div class="msgbody"><pre>' + msg + '</pre>' + triangle +
+                '</div></div>';
+        }
+        //如果是图片,去掉<pre>标签
+        if (onemsg.indexOf('chat-img') > 0) {
+            onemsg = onemsg.replace('<pre>', '').replace('</pre>', '');
+        }
+        return onemsg;
+    };
 </script>
 </html>

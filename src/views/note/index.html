@@ -35,29 +35,25 @@
                         <li id="demo" class="nav-item">
                             <a class="nav-item-link" href="../index.html">项目</a>
                             <ul class="nav-sub-list fadeUp">
-                                <li class="nav-sub-item"><a href="/g2/doc/index.html">快速上手</a></li>
-                                <li class="nav-sub-item"><a href="/g2/doc/tutorial/start/index.html">使用教程</a></li>
-                                <li class="nav-sub-item"><a href="/g2/demo/index.html">图表示例</a></li>
-                                <li class="nav-sub-item"><a href="/g2/api/index.html">API</a></li>
-                                <li class="nav-sub-item"><a href="/g2/doc/history.html">更新日志</a></li>
+                                <li class="nav-sub-item"><a href="../index.html">示例</a></li>
+                                <li class="nav-sub-item"><a href="../index.html">API</a></li>
+                                <li class="nav-sub-item"><a href="../index.html">图灵</a></li>
                             </ul>
                         </li>
                         <li id="note" class="nav-item hover">
                             <a class="nav-item-link" href="../note/index.html">笔记</a>
                             <ul class="nav-sub-list fadeUp">
-                                <li class="nav-sub-item"><a href="/g2-mobile/doc/index.html">快速上手</a></li>
-                                <li class="nav-sub-item"><a href="/g2-mobile/doc/tutorial/shape.html">使用教程</a></li>
-                                <li class="nav-sub-item"><a href="/g2-mobile/demo/index.html">图表示例</a></li>
-                                <li class="nav-sub-item"><a href="/g2-mobile/api/index.html">API</a></li>
-                                <li class="nav-sub-item"><a href="/g2-mobile/doc/history.html">更新日志</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">javascript</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">web</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">java</a></li>
                             </ul>
                         </li>
                         <li id="userCenter" class="nav-item last">
                             <a class="nav-item-link" href="../userCenter/index.html">个人中心</a>
                             <ul class="nav-sub-list fadeUp">
-                                <li class="nav-sub-item"><a href="/vis/doc/chart/classify/compare.html">图表用法</a></li>
-                                <li class="nav-sub-item"><a href="/vis/doc/design/index.html">图表设计指引</a></li>
-                                <li class="nav-sub-item"><a href="/vis/doc/reference.html">经典文献</a></li>
+                                <li class="nav-sub-item"><a href="../userCenter/index.html">介绍</a></li>
+                                <li class="nav-sub-item"><a href="../userCenter/index.html">网站备案</a></li>
+                                <li class="nav-sub-item"><a href="../userCenter/index.html">模板下载</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -65,7 +61,73 @@
             </div>
         </div>
     </header>
-<div class="note">note</div>
-</body>
+    <div class="note">
+        <div class="left-nav">
+            <p class="title">笔记</p>
+            <ul class="left-nav-list">
+                <li class="note-menu">
+                        <div class="menu-title ">javascript</div>
+                            <ul class="menu-list" style="display: block;">
+                            <li class="active">
+                                <a href="../note/index.html">G2</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/chart.html">Chart</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/view.html">View</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/geom.html">Geom</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/scale.html">Scale</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/stat.html">Stat</a>
+                            </li>
+                            </ul>
+                </li>
+                <!---->
+                <li class="note-menu">
+                    <div>
+                        <div class="menu-title ">web</div>
+                            <ul class="menu-list" style="display: none;">
+                            <li class="">
+                                <a href="../../g2/api/index.html">gulp</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/chart.html">git</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/view.html">node</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/geom.html">vue</a>
+                            </li>
+                            <li class="">
+                                <a href="../../g2/api/scale.html">webpack</a>
+                            </li>
+                            </ul>
+                    </div>
+                </li>
+                <!---->
+                <li class="note-menu">
+                    <a href="/g2/doc/history.html">java</a>
+                </li>
+            </ul>
+        </div>
+        <div class="right-content"></div>
+    </div>
 
+</body>
+<script>
+    $('.note-menu').each(function (i, o){
+        var that=$(this);
+        that.find(".menu-title").on('click',function(i){
+            that.find(".menu-list").slideToggle();
+            console.log( $(this).find(".menu-list"))
+        });
+    })
+</script>
 </html>
