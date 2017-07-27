@@ -148,14 +148,14 @@
             //     success: function(json){  
             //     }  
             // });
-            $.ajax({
-             type: "GET",
-            //  async: false,
-             url: url,
-             dataType: "jsonp",
-             jsonp: "jsoncallback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-             jsonpCallback:"jsoncallback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
-         });
+        //     $.ajax({
+        //      type: "GET",
+        //     //  async: false,
+        //      url: url,
+        //      dataType: "jsonp",
+        //      jsonp: "jsoncallback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+        //      jsonpCallback:"jsoncallback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+        //  });
          $.ajax({
             url: url,
             type: 'GET',
