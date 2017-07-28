@@ -192,6 +192,28 @@ li:hover > a {
     color: #6556E2;
     text-decoration: none;
 }
+.menu-title{
+  position: relative;
+}
+.icon-circle-down{
+    color:#666666;
+    transition: all .3s ease;
+    transform: rotate(0deg) scale(.75, .75);
+    transform-origin: 50% 50%;
+
+    height: 25px;
+    line-height: 25px;
+    display: block;
+    position: absolute;
+    right: 24px;
+    top: 0;
+    font-size: 14px;
+  }
+.rotate {
+  transform: rotate(-180deg) scale(.75, .75)!important;
+  transform-origin: 50% 50%;
+  transition: all .3s ease;
+}
 /*right-content*/
 .right-content{
     position: relative;

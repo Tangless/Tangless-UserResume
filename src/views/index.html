@@ -72,7 +72,7 @@
                 <!---->
                 <li class="note-menu ">
                     <div>
-                        <div class="menu-title ">API</div>
+                        <div class="menu-title ">API<span class="icon-circle-down"></span></div>
                             <ul class="sub-list" style="display: none;">
                                 <li class="">
                                     <a href="#">G2</a>
@@ -151,8 +151,7 @@
             // });
         //     $.ajax({
         //      type: "GET",
-        //     //  async: false,
-        //      url: url,
+        //      url : 'https://api.douban.com/v2/movie/top250?count=10', 
         //      dataType: "jsonp",
         //      jsonp: "jsoncallback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
         //      jsonpCallback:"jsoncallback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
@@ -174,8 +173,7 @@
         // })
         /**/
         $.ajax({  
-                url : 'http://localhost:3000/robot/index?info='+msg+'&key=fbc26d3cf3ddef874603116ff55429ce', //将会转发此请求到10.10.21.65:8080/terminal/DataServlet  
-                // url : url,
+                url : url,
                 type : "GET",  
                 dataType : "json",  
                 data : {},  
@@ -192,7 +190,7 @@
     });
     function jsoncallback(data){
         console.log(data);
-        contentList.append(pushMsg(data.result.text,false));
+        // contentList.append(pushMsg(data.result.text,false));
     }
     /*拼接消息*/
     function pushMsg(msg,isSelfSend) {
