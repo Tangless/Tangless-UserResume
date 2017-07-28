@@ -12,6 +12,7 @@
     <link href="../global/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="../global/css/animation.css" rel="stylesheet">
     <link href="../global/css/common.css" rel="stylesheet">
+    <link href="../global/css/font/font.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
 
     <script src="../global/js/jquery-3.2.1.min.js"></script>
@@ -156,21 +157,37 @@
         //      jsonp: "jsoncallback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
         //      jsonpCallback:"jsoncallback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
         //  });
-         $.ajax({
-            url: url,
-            type: 'GET',
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function (data, textStatus, jqXHR) {
-                console.log(data);
-                contentList.append(pushMsg(data.result.text,false));
-                return
-            },
-            error: function () {
-                alert('fff');
-            }
-        })
+        //  $.ajax({
+        //     url: url,
+        //     type: 'GET',
+        //     xhrFields: {
+        //         withCredentials: true
+        //     },
+        //     success: function (data, textStatus, jqXHR) {
+        //         console.log(data);
+        //         contentList.append(pushMsg(data.result.text,false));
+        //         return
+        //     },
+        //     error: function () {
+        //         alert('fff');
+        //     }
+        // })
+        /**/
+        $.ajax({  
+                url : 'http://localhost:3000/robot/index?info='+msg+'&key=fbc26d3cf3ddef874603116ff55429ce', //将会转发此请求到10.10.21.65:8080/terminal/DataServlet  
+                // url : url,
+                type : "GET",  
+                dataType : "json",  
+                data : {},  
+                success : function(data) {  
+                    console.log(data);
+                    contentList.append(pushMsg(data.result.text,false));      
+                },  
+                error : function() {  
+                    alert("====error====");  
+                }  
+        });  
+        /**/
         }
     });
     function jsoncallback(data){
