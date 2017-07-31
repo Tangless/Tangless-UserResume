@@ -309,6 +309,26 @@ h1{
     top: 14px;
     display: block;
 }
+.msgbody .tr-sanjiao{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid #ebf0f8;
+    right: -6px;
+    top: 12px;
+}
+.msgbody .tl-sanjiao{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-right: 6px solid #f1f1f1;
+    left: -6px;
+    top: 12px;
+}
 .self-msg .msgbody .triangle {
     left: auto;
     right: -6px;

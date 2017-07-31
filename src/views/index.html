@@ -97,11 +97,12 @@
                     <h1 class="text-center">天下事</h1>
                     <div class="content-list">
                         <div class="one-message">
-                            <div class="msgfrom-info">天下通</div>
+                            <div class="msgfrom-info">叮铃玲玲</div>
                             <img class="user-head-icon left" src="../views/images/tuling.png">
                             <div class="msgbody">
                                 <pre>说点儿什么吧</pre>
-                                <img class="triangle" src="../views/images/triangle2.png">
+                                <i class="tl-sanjiao"></i>
+                                <!--<img class="triangle" src="../views/images/triangle2.png">-->
                             </div>
                         </div>
                     </div>
@@ -176,7 +177,8 @@
         if (isSelfSend) {
             userhead = '<img class="user-head-icon right" src="../views/images/tulinguser.png"/>';
             //小三角
-            triangle = '<img class="triangle" src="../views/images/triangle.png">';
+            /*<img class="triangle" src="../views/images/triangle.png">*/
+            triangle = '<i class="tr-sanjiao"></i>';
 
             onemsg = '<div class="one-message self-msg">' + userhead +
                 '<div class="msgbody"><pre>' + msg + '</pre>' + triangle +
@@ -186,9 +188,11 @@
         //不是自己发的消息
         else {
             userhead = '<img class="user-head-icon left" src="../views/images/tuling.png"/>';
-            msghead = '<div class="msgfrom-info">天下通</span></div>';
+            msghead = '<div class="msgfrom-info">叮铃玲玲</span></div>';
                 //小三角
-            triangle = '<img class="triangle" src="../views/images/triangle2.png">';
+            // triangle = '<img class="triangle" src="../views/images/triangle2.png">';
+            triangle = '<i class="tl-sanjiao"></i>';
+            
             onemsg = '<div class="one-message">' + msghead + userhead +
                 '<div class="msgbody"><pre>' + msg + '</pre>' + triangle +
                 '</div></div>';
