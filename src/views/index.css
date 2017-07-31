@@ -141,7 +141,7 @@ li:hover > a {
   }
 }
 /**/
-.demo{
+.demo,.userCenter{
   padding-left:256px;
 }
 /*内容侧边栏*/
@@ -216,11 +216,12 @@ li:hover > a {
 }
 /*right-content*/
 .right-content{
+    background-color: #e3e8ee;
     position: relative;
     padding: 40px 0 64px 40px;
 }
 [class^="page-"]{
-  display: none;
+  /*display: none;*/
 }
 .shown{
   display: block!important;
@@ -241,7 +242,7 @@ h1{
 }
 .content-list{
   height: 650px;
-  overflow: hidden;
+  overflow: auto;
   padding: 0 20px;
 }
 .one-message{
@@ -348,4 +349,79 @@ h1{
   box-shadow: none;
   outline: 0;
   border-radius: 2px;
+}
+/*userCenter右侧的内容*/
+.userCenter{}
+.resume-1{
+  width: 795px;
+  height: 1122px;
+  background-color: #FFF;
+  margin: auto;
+}
+.user-info{
+  background-color: #f3f3f3;
+  height: 100%;
+  display: inline-block;
+  margin-left: 20px;
+  width: 30%;
+  width: -webkit-calc(30% - 20px);
+  width: -moz-calc(30% - 20px);
+  width: calc(30% - 20px);
+  vertical-align: top;
+}
+.user-demand{
+  height: 100%;
+  display: inline-block;
+  margin-right: 20px;
+  margin-left: -4px;
+  width: 70%;
+  width: -webkit-calc(70% - 20px);
+  width: -moz-calc(70% - 20px);
+  width: calc(70% - 20px);
+  vertical-align: top;
+}
+.user-info img{
+  width: 118px;
+  height: 160px;
+  margin-top: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.user-name{
+  text-align: center;
+  color: #1C2733;
+  font-size: 18px;
+  font-weight: 600;
+  height: 50px;
+  line-height: 50px;
+}
+.info-list{
+  color: #212022;
+  padding-left: 15px;
+  height: 40px;
+  line-height: 40px;
+  border-top: 1px solid #b3b5b7;
+}
+.info-list:last-child{
+  border-top: 1px solid #b3b5b7;
+  border-bottom: 1px solid #b3b5b7;
+}
+.info-list [class^="icon-"]{
+  text-align: center;
+  color: #FFF;
+  font-size: 16px;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  background-color: #1C2733;
+  margin-right: 8px;
+  vertical-align: middle;
+  /*font-weight: 700;*/
+  padding-top: 2px;
+}
+.info-list .icon-envelope,.info-list .icon-user{
+  font-size: 12px;
+  padding-top: 4px;
 }

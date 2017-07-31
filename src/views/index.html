@@ -98,17 +98,10 @@
                     <div class="content-list">
                         <div class="one-message">
                             <div class="msgfrom-info">天下通</div>
-                            <img class="user-head-icon left" src="https://zos.alipayobjects.com/rmsportal/aGpKpuxoGfZqJobMPLvj.svg">
+                            <img class="user-head-icon left" src="../views/images/tuling.png">
                             <div class="msgbody">
-                                <pre>hello</pre>
+                                <pre>说点儿什么吧</pre>
                                 <img class="triangle" src="../views/images/triangle2.png">
-                            </div>
-                        </div>
-                        <div class="one-message self-msg">
-                            <img class="user-head-icon right" src="https://sview.wanpinghui.com:443/m/ChatRoomTpl/images/jvhua.jpg">
-                            <div class="msgbody">
-                                <pre>hello</pre>
-                                <img class="triangle" src="../views/images/triangle.png">
                             </div>
                         </div>
                     </div>
@@ -136,62 +129,43 @@
     $(".send").on("click",function(){
         var msg = $(".edit-input").val();
         var url = '';
+        var appkey = 'cb8d9ff9f9aa434aa85cea9a46106338';
         if(msg){
             contentList.append(pushMsg(msg,true));
-            url='http://op.juhe.cn/robot/index?info='+msg+'&key=fbc26d3cf3ddef874603116ff55429ce';
+            url='http://www.tuling123.com/openapi/api?key=cb8d9ff9f9aa434aa85cea9a46106338&info='+msg+'&userid=000001';
             $(".edit-input").val('');
-            // $.ajax({
-            //     url: url,
-            //     type: 'POST',
-            //     // jsonp: 'jsoncallback',
-            //     dataType: 'jsonp',
-            //     jsonpCallback: 'jsoncallback',  
-            //     success: function(json){  
-            //     }  
-            // });
-        //     $.ajax({
-        //      type: "GET",
-        //      url : 'https://api.douban.com/v2/movie/top250?count=10', 
-        //      dataType: "jsonp",
-        //      jsonp: "jsoncallback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-        //      jsonpCallback:"jsoncallback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
-        //  });
-        //  $.ajax({
-        //     url: url,
-        //     type: 'GET',
-        //     xhrFields: {
-        //         withCredentials: true
-        //     },
-        //     success: function (data, textStatus, jqXHR) {
-        //         console.log(data);
-        //         contentList.append(pushMsg(data.result.text,false));
-        //         return
-        //     },
-        //     error: function () {
-        //         alert('fff');
-        //     }
-        // })
-        /**/
-        $.ajax({  
-                url : url,
-                type : "GET",  
-                dataType : "json",  
-                data : {},  
-                success : function(data) {  
-                    console.log(data);
-                    contentList.append(pushMsg(data.result.text,false));      
-                },  
-                error : function() {  
-                    alert("====error====");  
-                }  
-        });  
-        /**/
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function (data) {
+                    var dataMsg="";
+                    switch (data.code){
+                        case 100000:
+                        //文本
+                            dataMsg=data.text;
+                            break;
+                        case 200000:
+                        //有链接
+                            dataMsg='<a target="_blank" href="'+data.url+'">'+data.text+'</a>';
+                            break;
+                        case 302000:
+                        //新闻
+                            dataMsg='<li class="news">' + '<a target="_blank" href="' + data.detailurl + '">' + data.article + '</a>' + '</li>';
+                            break;
+                        case 308000:
+                        //菜谱
+                            for(var i=0;i<data.list.length;i++){
+                                dataMsg=dataMsg+'<ul class="caipu">' + '<li>菜谱: ' + data.list[i].name +'</li><li><img src="'+data.list[i].icon+'" /></li><li>材料：'+data.list[i].info+'</li><br>'+ '<a target="_blank" href="' + data.list[i].detailurl + '">' + '查看详情</a>' + '</ul><br>';
+                            }
+                            break;
+
+                    }
+                    contentList.append(pushMsg(dataMsg,false));
+                }
+            });
+
         }
     });
-    function jsoncallback(data){
-        console.log(data);
-        // contentList.append(pushMsg(data.result.text,false));
-    }
     /*拼接消息*/
     function pushMsg(msg,isSelfSend) {
         var that = this;
@@ -200,7 +174,7 @@
 
         //如果自己发的消息
         if (isSelfSend) {
-            userhead = '<img class="user-head-icon right" src="https://sview.wanpinghui.com:443/m/ChatRoomTpl/images/jvhua.jpg"/>';
+            userhead = '<img class="user-head-icon right" src="../views/images/tulinguser.png"/>';
             //小三角
             triangle = '<img class="triangle" src="../views/images/triangle.png">';
 
@@ -211,7 +185,7 @@
         }
         //不是自己发的消息
         else {
-            userhead = '<img class="user-head-icon left" src="https://zos.alipayobjects.com/rmsportal/aGpKpuxoGfZqJobMPLvj.svg"/>';
+            userhead = '<img class="user-head-icon left" src="../views/images/tuling.png"/>';
             msghead = '<div class="msgfrom-info">天下通</span></div>';
                 //小三角
             triangle = '<img class="triangle" src="../views/images/triangle2.png">';
@@ -223,6 +197,13 @@
         if (onemsg.indexOf('chat-img') > 0) {
             onemsg = onemsg.replace('<pre>', '').replace('</pre>', '');
         }
+
+        /*滚动条居底*/
+        setTimeout(function () {
+            var d=$('.content-list');
+            var dh= d[0].scrollHeight;
+            d.scrollTop(dh);
+        },100)
         return onemsg;
     };
 </script>
