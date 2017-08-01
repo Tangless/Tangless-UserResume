@@ -44,9 +44,9 @@
                         <li id="note" class="nav-item hover">
                             <a class="nav-item-link" href="../note/index.html">笔记</a>
                             <ul class="nav-sub-list fadeUp">
-                                <li class="nav-sub-item"><a href="../note/index.html">javascript</a></li>
-                                <li class="nav-sub-item"><a href="../note/index.html">web</a></li>
-                                <li class="nav-sub-item"><a href="../note/index.html">java</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">工作实践</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">学习笔记</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">杂记</a></li>
                             </ul>
                         </li>
                         <li id="userCenter" class="nav-item last">
@@ -66,55 +66,16 @@
         <div class="left-nav">
             <p class="title">笔记</p>
             <ul class="left-nav-list">
-                <li class="note-menu">
-                        <div class="menu-title ">javascript</div>
-                            <ul class="menu-list" style="display: block;">
-                            <li class="active">
-                                <a href="../note/index.html">G2</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/chart.html">Chart</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/view.html">View</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/geom.html">Geom</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/scale.html">Scale</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/stat.html">Stat</a>
-                            </li>
-                            </ul>
+                <li class="note-menu active">
+                    <a class="menu-title" href="#">工作实践</a>
                 </li>
                 <!---->
                 <li class="note-menu">
-                    <div>
-                        <div class="menu-title ">web</div>
-                            <ul class="menu-list" style="display: none;">
-                            <li class="">
-                                <a href="../../g2/api/index.html">gulp</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/chart.html">git</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/view.html">node</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/geom.html">vue</a>
-                            </li>
-                            <li class="">
-                                <a href="../../g2/api/scale.html">webpack</a>
-                            </li>
-                            </ul>
-                    </div>
+                    <a class="menu-title" href="#">学习笔记</a>
                 </li>
                 <!---->
                 <li class="note-menu">
-                    <a href="/g2/doc/history.html">java</a>
+                    <a class="menu-title" href="#">杂记</a>
                 </li>
             </ul>
         </div>
@@ -126,8 +87,10 @@
     $('.note-menu').each(function (i, o){
         var that=$(this);
         that.find(".menu-title").on('click',function(i){
-            that.find(".menu-list").slideToggle();
-            console.log( $(this).find(".menu-list"))
+            $(".note-menu").removeClass('active');
+            // $("[class^='page-']").removeClass('shown');
+            that.addClass('active');
+            // $(".page-"+i).addClass('shown');
         });
     })
 </script>

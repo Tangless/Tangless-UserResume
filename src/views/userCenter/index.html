@@ -44,9 +44,9 @@
                         <li id="note" class="nav-item ">
                             <a class="nav-item-link" href="../note/index.html">笔记</a>
                             <ul class="nav-sub-list fadeUp">
-                                <li class="nav-sub-item"><a href="../note/index.html">javascript</a></li>
-                                <li class="nav-sub-item"><a href="../note/index.html">web</a></li>
-                                <li class="nav-sub-item"><a href="../note/index.html">java</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">工作实践</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">学习笔记</a></li>
+                                <li class="nav-sub-item"><a href="../note/index.html">杂记</a></li>
                             </ul>
                         </li>
                         <li id="userCenter" class="nav-item last hover">
@@ -66,19 +66,19 @@
         <div class="left-nav">
             <p class="title">个人中心</p>
             <ul class="left-nav-list">
-                <li class="active">
-                    <a href="../userCenter/index.html">介绍</a>
+                <li class="note-menu active">
+                    <a class="menu-title" href="#">介绍</a>
                 </li>
-                <li class="">
-                    <a href="../userCenter/index.html">网站备案</a>
+                <li class="note-menu">
+                    <a class="menu-title" href="#">网站备案</a>
                 </li>
-                <li class="">
-                    <a href="../userCenter/index.html">模板下载</a>
+                <li class="note-menu">
+                    <a class="menu-title" href="#">模板下载</a>
                 </li>
             </ul>
         </div>
         <div class="right-content">
-            <div class="page-0">
+            <div class="page-0 shown">
                 <div class="resume-1">
                     <div class="user-info">
                         <img src=""/>
@@ -97,10 +97,10 @@
                             <span class="glyphicon glyphicon-education"></span>
                             <span class="title">教育信息</span>
                             <div class="description">
-                                <span class="time">2012.09.01-2016.06.30</span>
-                                <span class="address"></span>
-                                <span class="major"></span>
-                                <span class="job"></span>
+                                <span class="time">2012.09——2016.06</span>
+                                <span class="address">西南科技大学</span>
+                                <span class="major">电子信息工程</span>
+                                <span class="job">本科</span>
                             </div>
                         </div>
                         <div class="user-work">
@@ -126,5 +126,15 @@
         </div>
     </div>
 </body>
-
+<script>
+    $('.note-menu').each(function (i, o){
+        var that=$(this);
+        that.find(".menu-title").on('click',function(){
+            $(".note-menu").removeClass('active');
+            $("[class^='page-']").removeClass('shown');
+            that.addClass('active');
+            $(".page-"+i).addClass('shown');
+        });
+    })
+</script>
 </html>
