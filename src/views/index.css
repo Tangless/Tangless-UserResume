@@ -478,10 +478,11 @@ h1{
   background-color: #1C2733;
 }
 .user-demand .description{
-  height: 30px;
+  height: 22px;
   color: #1c2733;
   font-size: 14px;
   font-weight: 600;
+  line-height: 14px;
 }
 .user-demand .description span{
   float: left;
@@ -496,4 +497,22 @@ h1{
 .user-demand .description .job{
   float: right;
   text-align: right;
+}
+.user-demand .detail span{
+  color: #212022;
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  height: 14px;
+  line-height: 14px;
+  text-align: left;
+  margin-bottom: 4px;
+}
+.user-demand .detail p{
+  color: #212022;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-indent: 30px;
 }
