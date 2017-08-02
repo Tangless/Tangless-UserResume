@@ -447,6 +447,7 @@ h1{
 }
 .user-demand{
   padding-left: 25px;
+  padding-right: 5px;
   margin-top: 40px;
 }
 .user-demand .glyphicon{
