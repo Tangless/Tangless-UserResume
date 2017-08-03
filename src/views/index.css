@@ -218,7 +218,7 @@ li:hover > a {
 .right-content{
     /*background-color: #e3e8ee;*/
     position: relative;
-    padding: 40px 0 30px 40px;
+    padding: 40px 40px 30px 40px;
 }
 [class^="page-"]{
   display: none;
@@ -515,4 +515,16 @@ h1{
   margin-bottom: 20px;
   letter-spacing: 1px;
   text-indent: 30px;
+}
+/*note 右侧内容*/
+.new-article{
+  float: right;
+  background-color: #4785f9;
+  color: #FFF;
+  outline: none;
+  border: none;
+  height: 30px;
+  width: 70px;
+  border-radius: 4px;
+  margin-bottom: 20px; 
 }
