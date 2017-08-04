@@ -38,16 +38,17 @@
     </header>
     <div class="login-form">
         <div class="layout" id="layout">
+            <a class="ecode" href="javascript:void(0)"></a>
             <div class="layout-header">
                 <img class="login-img" src="../../../favicon.ico"/>
                 <h4 class="text-center login-welcome">欢迎登录</h4>
             </div>
-            <form class="form-login">
+            <div class="form-login">
                 <input class="userName form-control" type="text" value="" placeholder="请输入您的用户名"/>
                 <input class="userPw form-control" type="password" value="" placeholder="请输入您的密码"/>
                 <div class="error-Tip hide">用户名或密码错误</div>
                 <button class="login">立即登录</button>
-            </form>
+            </div>
         </div>
     </div>
 </body>
@@ -67,6 +68,15 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
+    }
+    .ecode{
+        width: 68px;
+        height: 68px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        opacity: .3;
+        background: url("../../views/images/ecode.gif") no-repeat;
     }
     .layout-header{
         height: 192px;
@@ -99,6 +109,8 @@
         margin-bottom: 14px;
         display: block;
         outline: none;
+        border-color: #e0e0e0;
+        box-shadow: none;
     }
     .userPw{
         margin-bottom: 28px;
@@ -154,89 +166,39 @@
             $(".page-"+i).addClass('shown');
         });
     });
-    $(".send").on("click",function(){
-        var msg = $(".edit-input").val();
-        var url = '';
-        var appkey = 'cb8d9ff9f9aa434aa85cea9a46106338';
-        if(msg){
-            contentList.append(pushMsg(msg,true));
-            url='http://www.tuling123.com/openapi/api?key=cb8d9ff9f9aa434aa85cea9a46106338&info='+msg+'&userid=000001';
-            $(".edit-input").val('');
-            $.ajax({
-                url: url,
-                type: 'POST',
-                success: function (data) {
-                    var dataMsg="";
-                    switch (data.code){
-                        case 100000:
-                        //文本
-                            dataMsg=data.text;
-                            break;
-                        case 200000:
-                        //有链接
-                            dataMsg='<a target="_blank" href="'+data.url+'">'+data.text+'</a>';
-                            break;
-                        case 302000:
-                        //新闻
-                            dataMsg='<li class="news">' + '<a target="_blank" href="' + data.detailurl + '">' + data.article + '</a>' + '</li>';
-                            break;
-                        case 308000:
-                        //菜谱
-                            for(var i=0;i<data.list.length;i++){
-                                dataMsg=dataMsg+'<ul class="caipu">' + '<li>菜谱: ' + data.list[i].name +'</li><li><img src="'+data.list[i].icon+'" /></li><li>材料：'+data.list[i].info+'</li><br>'+ '<a target="_blank" href="' + data.list[i].detailurl + '">' + '查看详情</a>' + '</ul><br>';
-                            }
-                            break;
-
-                    }
-                    contentList.append(pushMsg(dataMsg,false));
-                }
-            });
-
-        }
+    /*实例化野狗身份认证*/
+    var config = {
+        authDomain: "wd1487810104sghfpv.wilddog.com"
+    }
+    wilddog.initializeApp(config);
+    /*注册新用户*/
+    // wilddog.auth().createUserWithEmailAndPassword(email,pwd)
+	// .then(function (user) {
+    //     console.info("user created.", user);
+	// }).catch(function (err) {
+    //     console.info("create user failed.", err);
+    // });
+    
+    /**退出登录
+    *signOut() 方法用于退出当前登录用户：
+    */
+    // wilddog.auth().signOut().then(function () {
+    //     console.info("user sign out.");
+    // });
+    
+    /*登录请求*/
+    $(".login").on("click",function(){
+        var userName=$(".userName").val();
+        var userPW=$(".userPw").val();
+        /*已有用户登录*/
+        wilddog.auth().signInWithEmailAndPassword(userName, userPW)
+        .then(function () {
+            console.info("login success, currentUser->",  wilddog.auth().currentUser);
+            let uid = wilddog.auth().currentUser.uid;
+        }).catch(function (err) {
+            console.info('login failed ->',err);
+        });
     });
-    /*拼接消息*/
-    function pushMsg(msg,isSelfSend) {
-        var that = this;
-        var triangle, userhead;
-        var onemsg = '';
-
-        //如果自己发的消息
-        if (isSelfSend) {
-            userhead = '<img class="user-head-icon right" src="../views/images/tulinguser.png"/>';
-            //小三角
-            /*<img class="triangle" src="../views/images/triangle.png">*/
-            triangle = '<i class="tr-sanjiao"></i>';
-
-            onemsg = '<div class="one-message self-msg">' + userhead +
-                '<div class="msgbody"><pre>' + msg + '</pre>' + triangle +
-                '</div></div>';
-
-        }
-        //不是自己发的消息
-        else {
-            userhead = '<img class="user-head-icon left" src="../views/images/tuling.png"/>';
-            msghead = '<div class="msgfrom-info">叮铃玲玲</span></div>';
-                //小三角
-            // triangle = '<img class="triangle" src="../views/images/triangle2.png">';
-            triangle = '<i class="tl-sanjiao"></i>';
-            
-            onemsg = '<div class="one-message">' + msghead + userhead +
-                '<div class="msgbody"><pre>' + msg + '</pre>' + triangle +
-                '</div></div>';
-        }
-        //如果是图片,去掉<pre>标签
-        if (onemsg.indexOf('chat-img') > 0) {
-            onemsg = onemsg.replace('<pre>', '').replace('</pre>', '');
-        }
-
-        /*滚动条居底*/
-        setTimeout(function () {
-            var d=$('.content-list');
-            var dh= d[0].scrollHeight;
-            d.scrollTop(dh);
-        },100)
-        return onemsg;
-    };
     document.onkeydown=function(event){
         var e = event || window.event || arguments.callee.caller.arguments[0];
         if(e && e.keyCode==27){ // 按 Esc 
@@ -246,7 +208,7 @@
                 //要做的事情
         }            
         if(e && e.keyCode==13){ // enter 键
-            $(".send").click();
+            $(".login").click();
         }
     }; 
 </script>
