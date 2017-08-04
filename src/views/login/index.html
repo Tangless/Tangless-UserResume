@@ -1,0 +1,253 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="icon" href="../../../favicon.ico">
+    <title>Tangless</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../global/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../global/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../../global/css/animation.css" rel="stylesheet">
+    <link href="../../global/css/common.css" rel="stylesheet">
+    <link href="../../global/css/font/font.css" rel="stylesheet">
+    <link href="../index.css" rel="stylesheet">
+
+    <script src="../../global/js/jquery-3.2.1.min.js"></script>
+    <script src="../../global/js/bootstrap.min.js"></script>
+    <!-- 引入 G2 文件 -->
+    <script src="https://a.alipayobjects.com/g/datavis/g2/2.3.6/g2.js"></script>
+    <!--引入野狗-->
+    <script src = "https://cdn.wilddog.com/sdk/js/2.5.8/wilddog.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div class="nav-wrapper gradient-line">
+            <div class="nav-content clearfix">
+                <div class="pull-left">
+                    <a href="../views/index.html" class="nav-logo">
+                        <img src="https://zos.alipayobjects.com/rmsportal/aGpKpuxoGfZqJobMPLvj.svg">
+                        <span class="logo-text">TangLess</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="login-form">
+        <div class="layout" id="layout">
+            <div class="layout-header">
+                <img class="login-img" src="../../../favicon.ico"/>
+                <h4 class="text-center login-welcome">欢迎登录</h4>
+            </div>
+            <form class="form-login">
+                <input class="userName form-control" type="text" value="" placeholder="请输入您的用户名"/>
+                <input class="userPw form-control" type="password" value="" placeholder="请输入您的密码"/>
+                <div class="error-Tip hide">用户名或密码错误</div>
+                <button class="login">立即登录</button>
+            </form>
+        </div>
+    </div>
+</body>
+<style>
+    .login-form{
+        background-color:#f5f5f5;
+        height: 100%;
+        height: -webkit-calc(100% - 72px);
+        height: -moz-calc(100% - 72px);
+        height: calc(100% - 72px);
+    }
+    .layout {
+        background-color: #fff;
+        width: 854px;
+        height: 620px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .layout-header{
+        height: 192px;
+        margin-bottom: 10px;
+        padding: 50px 0 22px;
+    }
+    .login-img{
+        width: 49px;
+        height: 48px;
+        margin: 0 auto;
+        display: block;
+    }
+    .login-welcome{
+        font-size: 30px;
+        color: #424242;
+        font-weight: normal;
+        padding-top: 22px;
+        padding-bottom: 10px;
+    }
+    .form-login{
+        width: 358px;
+        margin: 0 auto;
+        padding-bottom: 20px;
+    }
+    .form-control{
+        width: 356px;
+        height: 48px;
+        line-height: 22px;
+        padding: 13px 16px 13px 14px;
+        margin-bottom: 14px;
+        display: block;
+        outline: none;
+    }
+    .userPw{
+        margin-bottom: 28px;
+    }
+    .error-Tip{
+        font-size: 14px;
+        height: 21px;
+        line-height: 21px;
+        color: #ff001f;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+    .login{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        display: block;
+        margin-bottom: 14px;
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+        background-color: #0D2031;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+    @media only screen and (max-width: 850px){
+        .layout {
+            width: 100%;
+            width: 400px;
+            height: 480px;
+        }
+        .layout-header{
+            height: 127px;
+            padding: 25px 0 0;
+        }
+        .login-welcome{
+            font-size: 22px;
+            padding-top: 15px;
+        }
+    }
+</style>
+<script>
+    var contentList = $(".content-list");
+    $(".note-menu").each(function(i,o){
+        var that=$(this);
+        that.find('.menu-title').click(function(){
+            $(".note-menu").removeClass('active');
+            $("[class^='page-']").removeClass('shown');
+            that.addClass('active');
+            $(".page-"+i).addClass('shown');
+        });
+    });
+    $(".send").on("click",function(){
+        var msg = $(".edit-input").val();
+        var url = '';
+        var appkey = 'cb8d9ff9f9aa434aa85cea9a46106338';
+        if(msg){
+            contentList.append(pushMsg(msg,true));
+            url='http://www.tuling123.com/openapi/api?key=cb8d9ff9f9aa434aa85cea9a46106338&info='+msg+'&userid=000001';
+            $(".edit-input").val('');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function (data) {
+                    var dataMsg="";
+                    switch (data.code){
+                        case 100000:
+                        //文本
+                            dataMsg=data.text;
+                            break;
+                        case 200000:
+                        //有链接
+                            dataMsg='<a target="_blank" href="'+data.url+'">'+data.text+'</a>';
+                            break;
+                        case 302000:
+                        //新闻
+                            dataMsg='<li class="news">' + '<a target="_blank" href="' + data.detailurl + '">' + data.article + '</a>' + '</li>';
+                            break;
+                        case 308000:
+                        //菜谱
+                            for(var i=0;i<data.list.length;i++){
+                                dataMsg=dataMsg+'<ul class="caipu">' + '<li>菜谱: ' + data.list[i].name +'</li><li><img src="'+data.list[i].icon+'" /></li><li>材料：'+data.list[i].info+'</li><br>'+ '<a target="_blank" href="' + data.list[i].detailurl + '">' + '查看详情</a>' + '</ul><br>';
+                            }
+                            break;
+
+                    }
+                    contentList.append(pushMsg(dataMsg,false));
+                }
+            });
+
+        }
+    });
+    /*拼接消息*/
+    function pushMsg(msg,isSelfSend) {
+        var that = this;
+        var triangle, userhead;
+        var onemsg = '';
+
+        //如果自己发的消息
+        if (isSelfSend) {
+            userhead = '<img class="user-head-icon right" src="../views/images/tulinguser.png"/>';
+            //小三角
+            /*<img class="triangle" src="../views/images/triangle.png">*/
+            triangle = '<i class="tr-sanjiao"></i>';
+
+            onemsg = '<div class="one-message self-msg">' + userhead +
+                '<div class="msgbody"><pre>' + msg + '</pre>' + triangle +
+                '</div></div>';
+
+        }
+        //不是自己发的消息
+        else {
+            userhead = '<img class="user-head-icon left" src="../views/images/tuling.png"/>';
+            msghead = '<div class="msgfrom-info">叮铃玲玲</span></div>';
+                //小三角
+            // triangle = '<img class="triangle" src="../views/images/triangle2.png">';
+            triangle = '<i class="tl-sanjiao"></i>';
+            
+            onemsg = '<div class="one-message">' + msghead + userhead +
+                '<div class="msgbody"><pre>' + msg + '</pre>' + triangle +
+                '</div></div>';
+        }
+        //如果是图片,去掉<pre>标签
+        if (onemsg.indexOf('chat-img') > 0) {
+            onemsg = onemsg.replace('<pre>', '').replace('</pre>', '');
+        }
+
+        /*滚动条居底*/
+        setTimeout(function () {
+            var d=$('.content-list');
+            var dh= d[0].scrollHeight;
+            d.scrollTop(dh);
+        },100)
+        return onemsg;
+    };
+    document.onkeydown=function(event){
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if(e && e.keyCode==27){ // 按 Esc 
+            //要做的事情
+        }
+        if(e && e.keyCode==113){ // 按 F2 
+                //要做的事情
+        }            
+        if(e && e.keyCode==13){ // enter 键
+            $(".send").click();
+        }
+    }; 
+</script>
+</html>
