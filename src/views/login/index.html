@@ -17,6 +17,7 @@
 
     <script src="../../global/js/jquery-3.2.1.min.js"></script>
     <script src="../../global/js/bootstrap.min.js"></script>
+    <script src="../../global/js/globaldata.js"></script>
     <!-- 引入 G2 文件 -->
     <script src="https://a.alipayobjects.com/g/datavis/g2/2.3.6/g2.js"></script>
     <!--引入野狗-->
@@ -157,6 +158,7 @@
 </style>
 <script>
     var contentList = $(".content-list");
+    var errorTip = $(".error-Tip");
     $(".note-menu").each(function(i,o){
         var that=$(this);
         that.find('.menu-title').click(function(){
@@ -193,12 +195,15 @@
         /*已有用户登录*/
         wilddog.auth().signInWithEmailAndPassword(userName, userPW)
         .then(function () {
-            console.info("login success, currentUser->",  wilddog.auth().currentUser);
-            let uid = wilddog.auth().currentUser.uid;
+            global.user.uid = wilddog.auth().currentUser.uid;
+            global.user.email = wilddog.auth().currentUser.email;
+            global.user.phone = wilddog.auth().currentUser.phone;
         }).catch(function (err) {
             console.info('login failed ->',err);
+            errorTip.removeClass("hide");
         });
     });
+    /*为登录绑定enter事件*/
     document.onkeydown=function(event){
         var e = event || window.event || arguments.callee.caller.arguments[0];
         if(e && e.keyCode==27){ // 按 Esc 
@@ -211,5 +216,9 @@
             $(".login").click();
         }
     }; 
+    /*监听input 内容变化*/
+    $('input').bind("input propertychange", function () {
+            errorTip.addClass("hide");
+    });
 </script>
 </html>
