@@ -1,4 +1,4 @@
-window["global"] = {
+window["globalData"] = {
     "user":{
         "uid":"",
         "name":"",

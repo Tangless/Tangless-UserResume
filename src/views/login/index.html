@@ -195,9 +195,9 @@
         /*已有用户登录*/
         wilddog.auth().signInWithEmailAndPassword(userName, userPW)
         .then(function () {
-            global.user.uid = wilddog.auth().currentUser.uid;
-            global.user.email = wilddog.auth().currentUser.email;
-            global.user.phone = wilddog.auth().currentUser.phone;
+            globalData.user.uid = wilddog.auth().currentUser.uid;
+            globalData.user.email = wilddog.auth().currentUser.email;
+            globalData.user.phone = wilddog.auth().currentUser.phone;
         }).catch(function (err) {
             console.info('login failed ->',err);
             errorTip.removeClass("hide");
